@@ -36,7 +36,7 @@ echo "Inside editParams"
 upgrade()
 {
 
-#mv $AGENT/filewatcher-commons-0.0.1-SNAPSHOT.zip $AGENT/filewatcher-commons-0.0.1-SNAPSHOT.zip_$dt
+#mv $AGENT/agent-commons-0.0.1-SNAPSHOT.zip $AGENT/agent-commons-0.0.1-SNAPSHOT.zip_$dt
 
 if [ $ostype == 'AIX' ];then
 wget http://$DevOpsServerAndPort/$SDLC_env/agent.tar
@@ -67,7 +67,7 @@ ps -ef | grep com.xxx.Agent | grep -v grep | awk '{print $2}' | xargs -I {}  kil
 
 start()
 {
-nohup $JAVA_HOME_AWP/bin/java -Xms512m -Xmx1024m  -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=3690 -Dapp.env=$SDLC_env -cp $AGENTCLASSPATH com.xxx.Agent &
+nohup $JAVA_HOME_SAM/bin/java -Xms512m -Xmx1024m  -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=3690 -Dapp.env=$SDLC_env -cp $AGENTCLASSPATH com.xxx.Agent &
 
 echo $dt_numFormat>strt.tym 
 
@@ -82,7 +82,7 @@ sleep 3
 echo "Restarting agent"
 start
 sleep 3
-#tail -100 $AGENT/logs/AGENT.log | mail -s "Restart agent log on $boxname $AGENT " dl.gfts.us.global.autowatch.support@imcnam.ssmb.com
+#tail -100 $AGENT/logs/AGENT.log | mail -s "Restart agent log on $boxname $AGENT " opsauto3@gmail.com
 #$AGENT/sm.ksh "Restart agent log on $boxname $AGENT " $AGENT/nohup.out $AGENT/properties/application.properties
 }
 
